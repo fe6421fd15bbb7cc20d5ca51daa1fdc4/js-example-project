@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tuinhuisjes 2D - Test</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+        <script type="text/javascript" src="snap.svg-min.js"></script>
+        <script type="text/javascript" src="tuinhuisjesdrawer.js"></script>
+        <style>
+            div.a{width:40%;height:300px;float:left;background-color:rgba(25,25,25,0.6);}
+            div.b{width:60%;height:300px;background-color:rgba(76,65,25,0.6);float:right;}
+            div.c{width:100%;height:600px;background-color:rgba(65,26,85,0.6);}
+            #container{height:100%;width:100%;}
+            #container2{height:100%;width:100%;}
+            #container3{height:100%;width:100%;}
+        </style>
+    </head>
+    <body>
+        <div style="width:80%;background-color:#EBEBEB;padding:20px;margin:10px auto;">
+            <div class="a"><svg id="container" preserveAspectRatio="xMidYMid meet"></svg></div>
+            <div class="b"><svg id="container2" preserveAspectRatio="xMidYMid meet"></svg></div>
+            <div style="clear:both;"></div>
+            <div class="c"><svg id="container3" preserveAspectRatio="xMidYMid meet"></svg></div>
+        </div>
+
+        
+        <script>
+            var attributesHuisjeEen = {
+                type: 'pentagonal',
+                width: 600,
+                depth: 400,
+                roof: 'flat',
+                downspout: ['C', 'B'],
+                walls: {
+                    'A': {
+                        overhang: 30,
+                        canopy: false,
+                        doors: false,
+                        windows: [{width: 505, indent: 10}]
+                    },
+                    'B': {
+                        overhang: false,
+                        canopy: {
+                            depth: 60,
+                            sides: [
+                                {type: 'CLOSED'},
+                                {type: 'FENCE'},
+                                {type: 'FENCE'}
+                            ]
+                        },
+                        doors: [{rotation: 'left', indent: 10, length: 50, type: 'revolving'}, {rotation: 'right', indent: 60, length: 50, type: 'revolving'}],
+                        windows: [{width: 150, indent: 120}]
+                    },
+                    'C': {
+                        overhang: 20,
+                        canopy: false,
+                        doors: false,
+                        windows: [{width: 130, indent: 10}, {width: 240, indent: 150}, {width: 190, indent: 400}]
+                    },
+                    'D': {
+                        overhang: 30,
+                        canopy: false,
+                        doors: [{rotation: 'right', indent: 225, length: 50, type: 'sliding'}],
+                        windows: false
+                    },
+                    'E': {
+                        overhang: 10,
+                        canopy: false,
+                        doors: [{rotation: 'left', indent: 0, length: 50, type: 'revolving'}, {rotation: 'right', indent: 55, length: 50, type: 'revolving'}],
+                        windows: false
+                    }
+                }
+            }, attributesHuisjeTwee = {
+                type: 'quadrilateral',
+                width: 500,
+                depth: 350,
+                roof: 'crossed',
+                downspout: ['D', 'C'],
+                walls: {
+                    'A': {
+                        overhang: 50,
+                        canopy: false,
+                        doors: false,
+                        windows: [{width: 400, indent: 50}]
+                    },
+                    'B': {
+                        overhang: 0,
+                        canopy: false,
+                        doors: [{rotation: 'right', indent: 10, length: 60, type: 'sliding'}],
+                        windows: [{width: 40, indent: 100}, {width: 40, indent: 160}, {width: 40, indent: 220}, {width: 40, indent: 280}]
+                    },
+                    'C': {
+                        overhang: 5,
+                        canopy: false,
+                        doors: false,
+                        windows: [{width: 220, indent: 20}, {width: 220, indent: 260}]
+                    },
+                    'D': {
+                        overhang: 15,
+                        canopy: false,
+                        doors: false,
+                        windows: false
+                    }
+                }
+            }, attributesHuisjeDrie = {
+                type: 'pentagonal',
+                width: 600,
+                depth: 300,
+                roof: 'hipped',
+                downspout: ['C', 'B'],
+                walls: {
+                    'A': {
+                        overhang: 20,
+                        canopy: {
+                            depth: 60,
+                            sides: [
+                                {type: 'CLOSED'},
+                                {type: 'FENCE'},
+                                {type: 'OPEN'}
+                            ]
+                        },
+                        doors: false,
+                        windows: [{width: 505, indent: 10}]
+                    },
+                    'B': {
+                        overhang: 10,
+                        canopy: {
+                            depth: 60,
+                            sides: [
+                                {type: 'FENCE'},
+                                {type: 'CLOSED'},
+                                {type: 'FENCE'}
+                            ]
+                        },
+                        doors: [{rotation: 'left', indent: 10, length: 50, type: 'revolving'}, {rotation: 'right', indent: 60, length: 50, type: 'revolving'}],
+                        windows: [{width: 150, indent: 120}]
+                    },
+                    'C': {
+                        overhang: 45,
+                        canopy: false,
+                        doors: false,
+                        windows: [{width: 130, indent: 10}, {width: 240, indent: 150}, {width: 190, indent: 400}]
+                    },
+                    'D': {
+                        overhang: 20,
+                        canopy: false,
+                        doors: [{rotation: 'left', indent: 115, length: 50, type: 'sliding'}, {rotation: 'left', indent: 10, length: 50, type: 'revolving'}],
+                        windows: false
+                    },
+                    'E': {
+                        overhang: 10,
+                        canopy: false,
+                        doors: [{rotation: 'left', indent: 0, length: 50, type: 'revolving'}, {rotation: 'right', indent: 55, length: 50, type: 'revolving'}],
+                        windows: false
+                    }
+                }
+            };
+
+            var a = new TuinhuisjesDrawer('container', attributesHuisjeEen);
+            var b = new TuinhuisjesDrawer('container2', attributesHuisjeTwee);
+            var c = new TuinhuisjesDrawer('container3', attributesHuisjeDrie);
+        </script>
+    </body>
+</html>

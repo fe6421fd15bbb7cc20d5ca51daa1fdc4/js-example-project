@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tuinhuisjes 2D</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="snap.svg-min.js"></script>
+        <script type="text/javascript" src="tuinhuisjesdrawer.js"></script>
+        <style>
+            #container{height:100%;width:100%;background-color:rgba(25,25,25,0.3);}
+        </style>
+    </head>
+    <body>
+        <div style="width:50%;background-color:#EBEBEB;padding:20px;margin:30px auto;">
+            <svg id="container" preserveAspectRatio="xMidYMid meet"></svg>
+        </div>
+        <script>
+            var settings = {
+                type: 'pentagonal',
+                width: 400,
+                depth: 500,
+                roof: {
+                    type: 'hipped',
+                    gabletype: 'side'
+                },
+                downspout: ['B', 'A'],
+                walls: {
+                    'A': {
+                        overhang: 10,
+                        canopy: {
+                            depth: 120,
+                            sides: [
+                                {type: 'CLOSED'},
+                                {type: 'THICK_COLUMNS'},
+                                {type: 'FENCE'}
+                            ]
+                        },
+                        doors: false,
+                        windows: [
+                            {width: 305, indent: 10}
+                        ]
+                    },
+                    'B': {
+                        overhang: 10,
+                        canopy: false,
+                        doors: [
+                            {rotation: 'left', indent: 10, length: 50, type: 'revolving'},
+                            {rotation: 'right', indent: 60, length: 50, type: 'revolving'}
+                        ],
+                        windows: [
+                            {width: 150, indent: 120}
+                        ]
+                    },
+                    'C': {
+                        overhang: 20,
+                        canopy: {
+                            depth: 120,
+                            sides: [
+                                {type: 'CLOSED'},
+                                {type: 'CLOSED'},
+                                {type: 'CLOSED'}
+                            ]
+                        },
+                        doors: false,
+                        windows: [
+                            {width: 130, indent: 10},
+                            {width: 240, indent: 150},
+                        ]
+                    },
+                    'D': {
+                        overhang: 20,
+                        canopy: {
+                            depth: 90,
+                            sides: [
+                                {type: 'THIN_COLUMNS'},
+                                {type: 'THICK_COLUMNS'},
+                                {type: 'THIN_COLUMNS'}
+                            ]
+                        },
+                        doors: [
+                            {rotation: 'left', indent: 115, length: 50, type: 'sliding'},
+                            {rotation: 'left', indent: 10, length: 50, type: 'revolving'}
+                        ],
+                        windows: [
+                            {width: 230, indent: 180},
+                        ]
+                    },
+                    'E': {
+                        overhang: 20,
+                        canopy: false,
+                        doors: [
+                            {rotation: 'left', indent: 0, length: 50, type: 'revolving'},
+                            {rotation: 'right', indent: 55, length: 50, type: 'revolving'}
+                        ],
+                        windows: false
+                    }
+                }
+            };
+
+            var THD = new TuinhuisjesDrawer('container', settings);
+        </script>
+    </body>
+</html>
